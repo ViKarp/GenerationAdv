@@ -1,0 +1,29 @@
+Смартфоны :Huawei;Samsung;Apple;Xiaomi;One Plus
+Умные часы и браслеты :Xiaomi;Apple;Samsung
+Наушники :Xiaomi;Apple;JBL;Beats
+Телевизоры :Samsung;LG;Xiaomi
+Компьютерные кресла
+Сумки
+Чемоданы
+Наручные часы :Casio;Traser;Jacques Lemans;Xiaomi;Apple
+Холодильники :Samsung;LG;Nordfrost;Бирюса;Atlant;Beko
+Микроволновые печи :Bosch;Gorenje;Maunfeld;Midea
+Кофеварки и кофемашины :TEENRA;DeLonghi;Bosch
+Вентиляторы :Centek;Equation;Scarlett;Ballu
+Кондиционеры :Haier;Ballu;Hisense;ROYAL Clima;Electrolux
+Палатки :BTrace;High Peak;Tplus;Talberg;Alexika
+Туристические рюкзаки
+Велосипеды :STELS;Forward;Novatrack;Stark;Stinger
+Ролики
+Гироскутеры :GT;Hoverbot;MiniPro;Zaxboard
+Газонокосилки :Huter;PATRIOT;Ресанта;Зубр;Champion
+Планшеты :Apple;Huawei;Xiaomi;Lenovo;Samsung;BQ
+Ноутбуки :Apple;Huawei;Xiaomi;Lenovo;Samsung:HP;Asus;Acer
+Парфюмерия :SHAIK;Fragrance World;Giorgio Armani;Killian
+Купальники
+Надувные бассейны
+Кино
+Сериалы
+Путешествия
+Концерты
+Экскурсии
