@@ -8,6 +8,7 @@ import codecs
 
 
 def read_table(filename):
+    '''Read the table from .csv'''
     if filename is not None:
         fn = filename.split('/')[-1]
         try:
@@ -24,6 +25,7 @@ def read_table(filename):
 
 
 def show_table(data, header_list, fn):
+    '''Show the dataset in PySimpleGui'''
     layout = [
         [sg.Table(values=data,
                   headings=header_list,
@@ -40,22 +42,27 @@ def show_table(data, header_list, fn):
 
 
 def hideip(ip):
+    '''IP to num.***.***.***'''
     return ip[:ip.index('.')] + ".***.***.***"
 
 
 def dateToInt(date):
+    '''Date to number of month'''
     return int(str(date[5:7]))
 
 
 def daterand(date):
+    '''Random date same month'''
     return str(date[:8]) + str(randint(1, 30))
 
 
 def advrand(adv):
+    '''number of advertisment with perturbation'''
     return adv + randint(-5, 5)
 
 
 def advbool(adv):
+    ''''''
     if adv >= 50:
         return ">=50"
     else:
@@ -118,7 +125,7 @@ def gen(path, num):
              'deviantart.com', 'mixi.jp', 'myspace.com', 'toxicbun.com', 'vimple.com', 'wistia.com', 'cincopa.com',
              'vidyard.com', 'brightcove.com', 'twentythree.com', 'sproutvideo.com', 'dacast.com', 'onlyfans.com',
              'netflix.com', 'primevideo.com', 'tv.apple.com']
-    sitesRU = ['dzen.ru', 'vk.com', 'ok.ru', 'rutube.ru', 'my.mail.ru', 'okko.tv', 'ivi.ru', 'kion.ru',
+    sitesRU = ['dzen.ru', 'vk.com', 'ok.ru', 'rutube.ru', 'mail.ru', 'okko.tv', 'ivi.ru', 'kion.ru',
                'megogo.net',
                'start.ru', 'premier.one', 'tvigle.ru', 'wink.ru']
     df = []
@@ -192,9 +199,9 @@ def depdf(path, flag1, flag2, flag3, flag4, flag5, flag6):
     dep_df = ",".join(df.columns.to_list()) + ",Количество повторений\n"
     count_min_value = list(d.values()).count(1) + list(d.values()).count(2) + list(d.values()).count(3) + list(
         d.values()).count(4)
-    if count_min_value / 250000 != 0:
+    if count_min_value / num != 0:
         stats_prompt = sg.popup_yes_no("We can delete " + str(
-            100 * round(count_min_value / 250000, 2)) + "% lines to establish k-anonymity = 5. Do you want to do it?")
+            100 * round(count_min_value / num, 2)) + "% lines to establish k-anonymity = 5. Do you want to do it?")
         if stats_prompt == 'Yes':
             for key in d:
                 if d[key] >= 5:
@@ -227,7 +234,6 @@ flag = [False] * 6
 
 while True:
     event, values = window.read()
-
     if event == sg.WIN_CLOSED:  # if user closes window or clicks cancel
         break
 
@@ -237,9 +243,10 @@ while True:
         else:
             flag[i] = False
 
+    path = values["input"]
+    num = values["inputNUM"]
+
     if event == 'Generate dataset':
-        path = values["input"]
-        num = values["inputNUM"]
         try:
             df = gen(path, int(num))
             window['txt'].update("Dataset has been generated!")
@@ -276,13 +283,13 @@ while True:
                 y = [list(df["Количество повторений"]).count(i) for i in x]
 
                 if y[0] != 0:
-                    layout1.append([sg.Text("K-anonimity = 1: " + str(round(y[0] / sum(y) * 100, 2)) + "%")])
+                    layout1.append([sg.Text("K-anonymity = 1: " + str(round(y[0] / int(num) * 100, 2)) + "%")])
                 if y[1] != 1:
-                    layout1.append([sg.Text("K-anonimity = 2: " + str(round(y[1] / sum(y) * 100, 2)) + "%")])
+                    layout1.append([sg.Text("K-anonymity = 2: " + str(round(y[1] / int(num) * 100, 2)) + "%")])
                 if y[2] != 2:
-                    layout1.append([sg.Text("K-anonimity = 3: " + str(round(y[2] / sum(y) * 100, 2)) + "%")])
+                    layout1.append([sg.Text("K-anonymity = 3: " + str(round(y[2] / int(num) * 100, 2)) + "%")])
                 if y[3] != 3:
-                    layout1.append([sg.Text("K-anonimity = 4: " + str(round(y[3] / sum(y) * 100, 2)) + "%")])
+                    layout1.append([sg.Text("K-anonymity = 4: " + str(round(y[3] / int(num) * 100, 2)) + "%")])
             window1 = sg.Window('K-anonymity', layout1)
             window1.read()
             layout2 = [[sg.Text("Number of unique lines: " + str(df.shape[0]))]]
